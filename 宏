@@ -1,0 +1,33 @@
+预处理命令-宏定义
+定义符号常量：
+   #define PI 3.1415826
+   #define MAX_N 10000
+   
+定义傻瓜表达式：
+   #define MAX（a, b） (a) > (b) ? (a) : (b)
+   #define P(a) { \
+       printf("%d\n", a); \
+   }
+   
+ 预处理命令-预定义的宏
+ __DATA__                      日期：M mm dd yyyy
+ __TIME__                      时间：hh：mm：ss
+ __LINE__                      行号
+ __FILE__                      文件名
+ __FUNC__                      函数名
+ __PRETTY_FUNCTION__           更详细的函数信息
+ __func__                      函数名
+ 
+预处理命令-条件式编译
+  #ifdef DEBUG                 是否定义了宏
+  #ifndef CEBUG                是否没有定义宏
+  #if MAX_N == 5               宏是否等于5
+  #elif MAX_N == 4             否则宏是否等于4
+  #else
+  #endif
+  
+ 实现一个没有bug 的max宏 通过测试
+ 
+ MAX(a++, 6) a初值为7,函数返回值为7,a值变为8
+ 
+ #define MIN(A,B)	({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __a : __b; })
