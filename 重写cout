@@ -1,0 +1,64 @@
+//使用printf()重写cout
+
+#include <iostream>
+#include <stdio.h>
+
+namespace mylib{
+    class charster{
+        public:
+        charster(char(c)) : c(c) {}
+        char get() const {
+            return this->c;
+        }
+        private:
+        char c;
+    };
+
+    class ostream{
+    public:
+        ostream () {}
+        ostream &operator<<(const int &x){
+            printf("%d", x);
+            return *this;
+        }
+        ostream &operator<<(const char *x){
+            printf("%s", x);
+            return *this;
+        }
+        ostream &operator<<(const double &x){
+            printf("%llf", x);
+            return *this;
+        }
+        ostream &operator<<(const char &x){
+            printf("%c", x);
+            return *this;
+        }
+        ostream &operator<<(const float &x){
+            printf("%lf", x);
+            return *this;
+        }
+        ostream &operator<<(const charster &x){
+            (*this) << x.get();
+            return *this;
+        }
+    private:
+
+    };
+    ostream cout;
+    charster endl('\n');
+}
+
+using namespace mylib;
+
+int main()
+{
+    int a = 1;
+    double b = 1.1;
+    float c = 1.11;
+    char d = 'h';
+    char e[10] = "hello";
+    cout << a << ' ' << b << endl;
+    cout << c << ' ' << d << endl;
+    cout << e << ' ' << endl;
+    return 0;
+}
